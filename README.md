@@ -8,7 +8,7 @@ Gordo, Marion J.
 Masaya, Lawrenz Michael M.
 Tolentino, Cezar Ian C.
 
-How to run
+
 pip install -r requirements.txt
 
 streamlit run app.py
