@@ -6,7 +6,7 @@ from ultralytics import YOLO
 
 
 st.set_page_config(page_title="OCULAI")
-st.title("OCULAI: Retinal Image Segmentation")
+st.title("OCULAI: Multi-Source Instance Segmentation of Retinal Disease Features in Fundus Images")
 st.write("Upload an image to analyze (AMD, Glaucoma, Myopia)")
 st.sidebar.header("Settings")
 conf_thresh = st.sidebar.slider("Confidence threshold", 0.05, 1.00, 0.25, 0.05)
@@ -38,11 +38,11 @@ if uploaded_file is not None:
 
             st.image(res_rgb, caption="Result", use_container_width=True)
 
-            st.subheader("📋 Detected:")
+            st.subheader("Detected:")
             boxes = results[0].boxes
 
             if len(boxes) == 0:
-                st.write("No features detected. Lower confidence threshold.")
+                st.write("No features detected. Lower the confidence threshold.")
             else:
                 for box in boxes:
                     class_id = int(box.cls[0])
