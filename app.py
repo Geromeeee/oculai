@@ -30,12 +30,13 @@ if uploaded_image is not None:
     st.subheader("Original Image")
     st.image(image, use_container_width=True)
 
+    # run here
     if st.button("Run", type="primary"):
         with st.spinner("Analyzing..."):
             try:
                 results = model.predict(source=image, conf=conf_threshold, iou=iou_threshold, imgsz=640)
                 res_plotted = results[0].plot(line_width=2, boxes=True)
-                res_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB)
+                res_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB) #convert color format
 
                 st.subheader("Result")
                 st.image(res_rgb, use_container_width=True)
@@ -43,6 +44,7 @@ if uploaded_image is not None:
                 st.subheader("Detected:")
                 boxes = results[0].boxes
 
+                # if good eye with detected
                 if boxes is None or len(boxes) == 0:
                     st.success("Normal")
                     st.write("No pathological features detected.")
